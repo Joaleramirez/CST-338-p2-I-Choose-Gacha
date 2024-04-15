@@ -1,8 +1,10 @@
-package com.example.i_choose_gacha_mon;
+package I_choose_gachamon;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.i_choose_gacha_mon.R;
 
 public class MainActivity extends AppCompatActivity {
 
