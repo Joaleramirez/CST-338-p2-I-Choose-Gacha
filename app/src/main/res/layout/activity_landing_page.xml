@@ -64,4 +64,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/summonButton" />
+
+    <Button
+        android:id="@+id/settingsButton"
+        android:layout_width="120dp"
+        android:layout_height="75dp"
+        android:text="@string/settings"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gymButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
