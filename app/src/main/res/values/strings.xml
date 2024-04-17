@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">I-Choose-Gacha-mon</string>
+    <string name="log_in">Log in</string>
+    <string name="enter_a_username">Enter a Username</string>
+    <string name="enter_password">Enter password</string>
 </resources>
