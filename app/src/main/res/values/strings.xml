@@ -12,4 +12,9 @@
     <string name="enter_password">Enter password</string>
     <string name="create_an_account">Create an account</string>
     <string name="enter_a_password">Enter a password</string>
+    <string name="gym">GYM</string>
+    <string name="gacha_mon">GACHA-MON</string>
+    <string name="formation">FORMATION</string>
+    <string name="summon">SUMMON</string>
+    <string name="enhancement">ENHANCEMENT</string>
 </resources>

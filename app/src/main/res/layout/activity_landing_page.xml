@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="I_choose_gachamon.LandingPage">
+
+    <Button
+        android:id="@+id/gymButton"
+        android:layout_width="250dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/gym"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enhancementButton" />
+
+    <TextView
+        android:id="@+id/menuDisplayTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/gacha_mon"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/formationButton"
+        android:layout_width="250dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/formation"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menuDisplayTextView" />
+
+    <Button
+        android:id="@+id/summonButton"
+        android:layout_width="250dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/summon"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/formationButton" />
+
+    <Button
+        android:id="@+id/enhancementButton"
+        android:layout_width="250dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/enhancement"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/summonButton" />
+
+    <Button
+        android:id="@+id/settingsButton"
+        android:layout_width="120dp"
+        android:layout_height="75dp"
+        android:text="@string/settings"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gymButton" />
+</androidx.constraintlayout.widget.ConstraintLayout>
