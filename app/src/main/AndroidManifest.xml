@@ -19,6 +19,9 @@
             android:name="I_choose_gachamon.CreateAccount"
             android:exported="false" />
         <activity
+            android:name="I_choose_gachamon.LoginPage"
+            android:exported="false" />
+        <activity
             android:name="I_choose_gachamon.MainActivity"
             android:exported="true">
             <intent-filter>
