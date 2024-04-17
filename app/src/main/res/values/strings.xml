@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">I-Choose-Gacha-mon</string>
+    <string name="i_choose_gacha_mon">I Choose Gacha-mon</string>
+    <string name="create_account">Create account</string>
+    <string name="login">Login</string>
+    <string name="new_to_gachmon_create_an_account">New to Gachmon? Create an account</string>
+    <string name="got_an_account_login">Got an account? Login</string>
+    <string name="settings">Settings</string>
+    <string name="setting">*</string>
 </resources>
