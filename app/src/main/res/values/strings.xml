@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">I-Choose-Gacha-mon</string>
+    <string name="gym">GYM</string>
+    <string name="gacha_mon">GACHA-MON</string>
+    <string name="formation">FORMATION</string>
+    <string name="summon">SUMMON</string>
+    <string name="enhancement">ENHANCEMENT</string>
 </resources>
