@@ -8,7 +8,7 @@
     tools:context="I_choose_gachamon.LandingPage">
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/gymButton"
         android:layout_width="250dp"
         android:layout_height="75dp"
         android:layout_marginTop="40dp"
@@ -16,10 +16,10 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/enhancementButton" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/menuDisplayTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/formationButton"
         android:layout_width="250dp"
         android:layout_height="75dp"
         android:layout_marginTop="40dp"
@@ -40,10 +40,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/menuDisplayTextView" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/summonButton"
         android:layout_width="250dp"
         android:layout_height="75dp"
         android:layout_marginTop="40dp"
@@ -52,10 +52,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/formationButton" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/enhancementButton"
         android:layout_width="250dp"
         android:layout_height="75dp"
         android:layout_marginTop="40dp"
@@ -63,5 +63,5 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/summonButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
