@@ -48,7 +48,7 @@
         android:layout_width="349dp"
         android:layout_height="56dp"
         android:layout_marginTop="32dp"
-        android:text="@string/new_to_gachmon_create_an_account"
+        android:text="@string/new_to_gachamon_create_an_account"
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
