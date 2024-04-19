@@ -1,13 +1,11 @@
 package I_choose_gachamon;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
-import com.example.i_choose_gacha_mon.R;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.i_choose_gacha_mon.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,10 +19,19 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        //Login button on main
         binding.LoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, LandingPage.class));
+                startActivity(new Intent(MainActivity.this, LoginPage.class));
+            }
+        });
+
+        //Create account button on main
+        binding.CreateAccountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, CreateAccount.class));
             }
         });
     }
