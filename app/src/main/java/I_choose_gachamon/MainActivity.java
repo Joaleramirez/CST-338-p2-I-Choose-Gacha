@@ -14,7 +14,7 @@ import I_choose_gachamon.database.GachamonRepository;
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
-
+    private GachamonRepository repository;
     public static final String TAG = "GACHAMON";
 
     @Override
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
+        repository = GachamonRepository.getRepository(getApplication());
         //Login button on main
         binding.LoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
