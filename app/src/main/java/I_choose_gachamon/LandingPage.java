@@ -1,5 +1,6 @@
 package I_choose_gachamon;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,12 +18,23 @@ import com.example.i_choose_gacha_mon.databinding.ActivityMainBinding;
 public class LandingPage extends AppCompatActivity {
     ActivityLandingPageBinding binding;
 
+    private static final String LANDING_PAGE_USER_ID = "I_choose_gachamon.LANDING_PAGE_USER_ID";
+
+    int loggedInUserId = -1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLandingPageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        loginUser();
+
+        if(loggedInUserId == -1){
+            Intent intent = LoginPage.loginIntentFactory(getApplicationContext());
+            startActivity(intent);
+        }
 
         //Uncomment when pages are made
     /*
@@ -67,5 +79,14 @@ public class LandingPage extends AppCompatActivity {
         });
 
     */
+    }
+    private void loginUser() {
+        loggedInUserId = getIntent().getIntExtra(LANDING_PAGE_USER_ID, -1);
+    }
+
+    static Intent landingPageIntentFactory(Context context, int userId) {
+        Intent intent = new Intent(context, LandingPage.class);
+        intent.putExtra(LANDING_PAGE_USER_ID, userId);
+        return intent;
     }
 }

@@ -1,4 +1,4 @@
-package I_choose_gachamon.Database;
+package I_choose_gachamon.database;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -6,10 +6,9 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import I_choose_gachamon.Database.entities.User;
+import I_choose_gachamon.database.entities.User;
 
 @Dao
 public interface UserDAO {
@@ -21,7 +20,9 @@ public interface UserDAO {
     void delete(User user);
 
     @Query("SELECT * FROM " + GachamonDatabase.USER_TABLE + " ORDER BY username")
-    ArrayList<User> getAllUsers();
+    List<User> getAllUsers();
 
 
+    @Query("DELETE FROM " + GachamonDatabase.USER_TABLE)
+    void deleteAll();
 }

@@ -1,5 +1,6 @@
 package I_choose_gachamon;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -7,6 +8,8 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.i_choose_gacha_mon.databinding.ActivityMainBinding;
+
+import I_choose_gachamon.database.GachamonRepository;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
 
         //Login button on main
         binding.LoginButton.setOnClickListener(new View.OnClickListener() {

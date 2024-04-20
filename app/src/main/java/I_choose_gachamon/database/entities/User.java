@@ -1,11 +1,11 @@
-package I_choose_gachamon.Database.entities;
+package I_choose_gachamon.database.entities;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.util.Objects;
 
-import I_choose_gachamon.Database.GachamonDatabase;
+import I_choose_gachamon.database.GachamonDatabase;
 
 @Entity(tableName = GachamonDatabase.USER_TABLE)
 public class User {
