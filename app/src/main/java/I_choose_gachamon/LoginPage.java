@@ -32,7 +32,7 @@ public class LoginPage extends AppCompatActivity {
     }
 
     static Intent loginIntentFactory(Context context){
-        return new Intent(context, LoginPage.class);
+        return new Intent(context, MainActivity.class);
     }
 
 }
