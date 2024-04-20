@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
 
+    public static final String TAG = "GACHAMON";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,4 +36,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }
