@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -46,6 +47,17 @@ public class LandingPage extends AppCompatActivity {
             startActivity(intent);
         }
 
+
+        //Code for seeing admin only stuff
+        Button adminButton = findViewById(R.id.Admin_button);
+        Button settingsButton = findViewById(R.id.settingsButton);
+        if (user.isAdmin()) {
+            adminButton.setVisibility(View.VISIBLE);
+            settingsButton.setVisibility(View.GONE);
+        } else {
+            settingsButton.setVisibility(View.VISIBLE);
+            adminButton.setVisibility(View.GONE);
+        }
         //Uncomment when pages are made
     /*
         //Formation button on Landing page
@@ -82,6 +94,13 @@ public class LandingPage extends AppCompatActivity {
 
         //Settings button on Landing page
         binding.settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LandingPage.this, Settings.class));
+            }
+        });
+        //Admin settings button on Landing page
+        binding.Admin_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LandingPage.this, Settings.class));

@@ -67,12 +67,32 @@
 
     <Button
         android:id="@+id/settingsButton"
-        android:layout_width="120dp"
-        android:layout_height="75dp"
+        android:layout_width="134dp"
+        android:layout_height="72dp"
         android:text="@string/settings"
         android:textSize="14sp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gymButton" />
+        app:layout_constraintTop_toBottomOf="@+id/gymButton"
+        app:layout_constraintVertical_bias="0.704"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/Admin_button"
+        android:layout_width="129dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="48dp"
+        android:text="@string/admin_settings"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.031"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gymButton"
+        app:layout_constraintVertical_bias="0.0"
+        tools:visibility="visible" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
