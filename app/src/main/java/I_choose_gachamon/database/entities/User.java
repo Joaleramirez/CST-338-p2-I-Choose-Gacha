@@ -14,12 +14,12 @@ public class User {
     private int id;
     private String username;
     private String password;
-    private boolean isAdmin;
+    public boolean isAdmin;
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-        isAdmin = false;
+        isAdmin = isAdmin();
     }
 
     @Override

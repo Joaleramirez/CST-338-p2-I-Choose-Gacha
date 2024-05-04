@@ -15,7 +15,14 @@
     <string name="gym">GYM</string>
     <string name="gacha_mon">GACHA-MON</string>
     <string name="formation">FORMATION</string>
-    <string name="summon">SUMMON</string>
+    <string name="Summon">SUMMON</string>
     <string name="enhancement">ENHANCEMENT</string>
     <string name="admin_settings">Admin Settings</string>
+    <string name="Back_To_Menu"><![CDATA[<]]></string>
+    <string name="general_battle_map">General Battle Map</string>
+    <string name="boss_battle">BOSS BATTLE</string>
+    <string name="delete_account">Delete_Account</string>
+    <string name="change_monster_stats">Change Monster stats</string>
+    <string name="change_summon_rates">Change Summon Rates</string>
+    <string name="change_level_randomizer">Change Level Randomizer</string>
 </resources>

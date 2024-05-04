@@ -58,8 +58,14 @@ public class LandingPage extends AppCompatActivity {
             settingsButton.setVisibility(View.VISIBLE);
             adminButton.setVisibility(View.GONE);
         }
-        //Uncomment when pages are made
-    /*
+        //Summon button on Landing page
+        binding.summonButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LandingPage.this, Summoning.class));
+            }
+        });
+
         //Formation button on Landing page
         binding.formationButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,15 +73,6 @@ public class LandingPage extends AppCompatActivity {
                 startActivity(new Intent(LandingPage.this, Formation.class));
             }
         });
-
-        //Summon button on Landing page
-        binding.summonButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LandingPage.this, Summon.class));
-            }
-        });
-
         //Enhancement button on Landing page
         binding.enhancementButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +80,6 @@ public class LandingPage extends AppCompatActivity {
                 startActivity(new Intent(LandingPage.this, Enhancement.class));
             }
         });
-
         //Gym button on Landing page
         binding.gymButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +88,8 @@ public class LandingPage extends AppCompatActivity {
             }
         });
 
+        //Uncomment when pages are made
+    /*
         //Settings button on Landing page
         binding.settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override

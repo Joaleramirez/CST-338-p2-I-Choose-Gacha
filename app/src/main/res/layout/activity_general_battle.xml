@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="I_choose_gachamon.GeneralBattle">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/general_battle_level_selection_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absolutex="10dp"
+        tools:layout_editor_absolutey="64dp">
+
+
+        <Button
+            android:id="@+id/Back_To_Menu_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="-3dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="326dp"
+            android:background="@android:color/transparent"
+            android:text="@string/Back_To_Menu"
+            android:textColor="#FFFFFF"
+            android:textSize="34sp" />
+
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/general_battle_screen_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/general_battle_map"
+        android:textColor="#FDFDFD"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.04" />
+
+    <ImageButton
+        android:id="@+id/level_1_imageButton"
+        android:layout_width="102dp"
+        android:layout_height="112dp"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.097"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/general_battle_screen_textView"
+        app:layout_constraintVertical_bias="0.103"
+        app:srcCompat="@drawable/level_1_button" />
+
+    <ImageButton
+        android:id="@+id/level_2_imageButton"
+        android:layout_width="102dp"
+        android:layout_height="112dp"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.768"
+        app:layout_constraintStart_toEndOf="@+id/level_1_imageButton"
+        app:layout_constraintTop_toBottomOf="@+id/general_battle_screen_textView"
+        app:layout_constraintVertical_bias="0.104"
+        app:srcCompat="@drawable/level_2_button" />
+
+    <ImageButton
+        android:id="@+id/level_3_imageButton"
+        android:layout_width="123dp"
+        android:layout_height="141dp"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/level_4_imageButton"
+        app:layout_constraintHorizontal_bias="0.18"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/general_battle_screen_textView"
+        app:layout_constraintVertical_bias="0.784"
+        app:srcCompat="@drawable/level_3_button" />
+
+    <ImageButton
+        android:id="@+id/level_4_imageButton"
+        android:layout_width="102dp"
+        android:layout_height="112dp"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.867"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/level_2_imageButton"
+        app:layout_constraintVertical_bias="0.687"
+        app:srcCompat="@drawable/level_4_button" />
+
+    <ImageButton
+        android:id="@+id/level_5_imageButton"
+        android:layout_width="102dp"
+        android:layout_height="112dp"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/level_2_imageButton"
+        app:layout_constraintHorizontal_bias="0.647"
+        app:layout_constraintStart_toEndOf="@+id/level_1_imageButton"
+        app:layout_constraintTop_toBottomOf="@+id/general_battle_screen_textView"
+        app:layout_constraintVertical_bias="0.404"
+        app:srcCompat="@drawable/level_5_button" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,8 +12,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import I_choose_gachamon.database.entities.User;
 import I_choose_gachamon.MainActivity;
+import I_choose_gachamon.database.entities.User;
 
 @Database(entities = {User.class}, version = 1, exportSchema = false)
 public abstract class GachamonDatabase extends RoomDatabase {

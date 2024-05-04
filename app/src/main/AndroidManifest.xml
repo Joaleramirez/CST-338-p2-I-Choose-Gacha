@@ -13,6 +13,30 @@
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
         tools:targetApi="31">
         <activity
+            android:name="I_choose_gachamon.Settings"
+            android:exported="false" />
+        <activity
+            android:name="I_choose_gachamon.BossBattle"
+            android:exported="false" />
+        <activity
+            android:name="I_choose_gachamon.Gameplay"
+            android:exported="false" />
+        <activity
+            android:name="I_choose_gachamon.GeneralBattle"
+            android:exported="false" />
+        <activity
+            android:name="I_choose_gachamon.Gym"
+            android:exported="false" />
+        <activity
+            android:name="I_choose_gachamon.Enhancement"
+            android:exported="false" />
+        <activity
+            android:name="I_choose_gachamon.Formation"
+            android:exported="false" />
+        <activity
+            android:name="I_choose_gachamon.Summoning"
+            android:exported="false" />
+        <activity
             android:name="I_choose_gachamon.LandingPage"
             android:exported="false" />
         <activity
