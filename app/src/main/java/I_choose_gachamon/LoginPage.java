@@ -40,8 +40,6 @@ public class LoginPage extends AppCompatActivity {
     private void verifyUser(){
         String username = binding.LoginUsernameEditTextText.getText().toString();
 
-
-
         if (username.isEmpty()) {
             toastMaker("Username can not be blank.");
             return;

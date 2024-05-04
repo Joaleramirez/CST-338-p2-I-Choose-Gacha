@@ -12,18 +12,20 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import I_choose_gachamon.database.entities.Monster;
+import I_choose_gachamon.database.entities.Skill;
 import I_choose_gachamon.database.entities.User;
 import I_choose_gachamon.MainActivity;
 
-@Database(entities = {User.class}, version = 1, exportSchema = false)
+@Database(entities = {User.class, Monster.class, Skill.class}, version = 3, exportSchema = false)
 public abstract class GachamonDatabase extends RoomDatabase {
 
     private static final String DATABASE_NAME = "Gachamon_database";
     public static final String USER_TABLE = "user_table";
-
+    public static final String MONSTER_TABLE = "monster_table";
+    public static final String SKILL_TABLE = "skill_table";
     private static volatile GachamonDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
-
     static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     static GachamonDatabase getDatabase(final Context context) {
@@ -63,5 +65,9 @@ public abstract class GachamonDatabase extends RoomDatabase {
     };
 
     public abstract UserDAO userDAO();
+
+    public abstract MonsterDAO monsterDAO();
+
+    public abstract SkillDAO skillDAO();
 
 }

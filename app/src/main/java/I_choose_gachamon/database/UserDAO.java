@@ -23,7 +23,6 @@ public interface UserDAO {
     @Query("SELECT * FROM " + GachamonDatabase.USER_TABLE + " ORDER BY username")
     LiveData<List<User>> getAllUsers();
 
-
     @Query("DELETE FROM " + GachamonDatabase.USER_TABLE)
     void deleteAll();
 
