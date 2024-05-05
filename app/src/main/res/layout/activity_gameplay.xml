@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GameplayActivity">
+    tools:context="I_choose_gachamon.Gameplay">
 
     <!-- Background and Button to Return to Menu -->
     <RelativeLayout
