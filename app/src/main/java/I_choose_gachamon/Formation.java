@@ -57,30 +57,28 @@ public class Formation extends AppCompatActivity {
                 });
             }
         });
-                binding.BackToMenuButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        startActivity(new Intent(Formation.this, LandingPage.class));
-                    }
-                });
+        binding.BackToMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Formation.this, LandingPage.class));
+            }
+        });
 
-                binding.formationSaveButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        List<Monster> selectedMonsters = adapter.getSelectedMonsters();
-                        if (selectedMonsters.size() == 4) {
-                            // Create a new team
-                            Team team = new Team(currentUser.getId(), selectedMonsters.get(0).getId(), selectedMonsters.get(1).getId(), selectedMonsters.get(2).getId(), selectedMonsters.get(3).getId());
-                            repository.replaceTeam(currentUser.getId(), team);
-                            Toast.makeText(Formation.this, "Team saved successfully!", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(Formation.this, "Please select exactly 4 monsters.", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+        binding.formationSaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<Monster> selectedMonsters = adapter.getSelectedMonsters();
+                if (selectedMonsters.size() == 4) {
+                    // Create a new team
+                    Team team = new Team(currentUser.getId(), selectedMonsters.get(0).getId(), selectedMonsters.get(1).getId(), selectedMonsters.get(2).getId(), selectedMonsters.get(3).getId());
+                    repository.replaceTeam(currentUser.getId(), team);
+                    Toast.makeText(Formation.this, "Team saved successfully!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(Formation.this, "Please select exactly 4 monsters.", Toast.LENGTH_SHORT).show();
+                }
             }
-            public List<Monster> getSelectedMonsters () {
-                return adapter.getSelectedMonsters();
-            }
+        });
+    }
+
 
 }
