@@ -29,5 +29,35 @@ public class GeneralBattle extends AppCompatActivity {
                 startActivity(new Intent(GeneralBattle.this, LandingPage.class));
             }
         });
+        binding.level1ImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(GeneralBattle.this, Gameplay.class));
+            }
+        });
+        binding.level2ImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(GeneralBattle.this, Gameplay.class));
+            }
+        });
+        binding.level3ImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(GeneralBattle.this, Gameplay.class));
+            }
+        });
+        binding.level4ImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(GeneralBattle.this, Gameplay.class));
+            }
+        });
+        binding.level5ImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(GeneralBattle.this, Gameplay.class));
+            }
+        });
     };
 }

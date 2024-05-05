@@ -79,7 +79,7 @@
         app:srcCompat="@drawable/boss_battle_button" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/boss_rush_imageButton"
         android:layout_width="179dp"
         android:layout_height="179dp"
         android:background="@android:color/transparent"

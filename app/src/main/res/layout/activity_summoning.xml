@@ -28,6 +28,7 @@
         android:layout_marginEnd="318dp"
         android:background="@android:color/transparent"
         android:text="@string/Back_To_Menu"
+        android:textColor="#FFFFFF"
         android:textSize="34sp" />
 
   </RelativeLayout>

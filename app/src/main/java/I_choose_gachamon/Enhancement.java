@@ -29,5 +29,11 @@ public class Enhancement extends AppCompatActivity {
                 startActivity(new Intent(Enhancement.this, LandingPage.class));
             }
         });
+        binding.enhancementButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     };
 }
