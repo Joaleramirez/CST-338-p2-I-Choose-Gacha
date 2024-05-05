@@ -30,6 +30,7 @@ public class Monster {
     private int energy = 0;
     private int baseLevel = 1;
     private int skillId; // foreign key to a skill
+    private boolean selected = false;
 
     public Monster(Integer userId, String name, int hp, int attack, int skillId) {
         this.userId = userId;
@@ -44,12 +45,12 @@ public class Monster {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Monster monster = (Monster) o;
-        return id == monster.id && Objects.equals(userId, monster.userId) && hp == monster.hp && attack == monster.attack && energy == monster.energy && baseLevel == monster.baseLevel && skillId == monster.skillId && Objects.equals(name, monster.name);
+        return id == monster.id && hp == monster.hp && attack == monster.attack && energy == monster.energy && baseLevel == monster.baseLevel && skillId == monster.skillId && selected == monster.selected && Objects.equals(userId, monster.userId) && Objects.equals(name, monster.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userId, name, hp, attack, energy, baseLevel, skillId);
+        return Objects.hash(id, userId, name, hp, attack, energy, baseLevel, skillId, selected);
     }
 
     public int getSkillId() {
@@ -114,5 +115,13 @@ public class Monster {
 
     public void setBaseLevel(int baseLevel) {
         this.baseLevel = baseLevel;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 }

@@ -1,9 +1,11 @@
 package I_choose_gachamon.database;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 
 import java.util.List;
@@ -21,7 +23,16 @@ public interface TeamDAO {
     @Delete
     void delete(Team team);
 
+    @Query("DELETE FROM " + GachamonDatabase.TEAM_TABLE + " WHERE userId = :userId")
+    void deleteTeamFromUser(int userId);
+
     @Query("SELECT * FROM team_table WHERE userId = :userId")
-    List<Team> getTeamByUserId(int userId);
+    LiveData<List<Team>> getTeamByUserId(int userId);
+
+    @Transaction
+    default void replaceTeam(int userId, Team newTeam) {
+        deleteTeamFromUser(userId);
+        insert(newTeam);
+    }
 }
 
