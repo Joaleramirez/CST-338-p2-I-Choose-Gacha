@@ -10,7 +10,7 @@
   <RelativeLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:background="@drawable/Summoning_Background"
+      android:background="@drawable/summoning_background"
       tools:layout_editor_absolutex="10dp"
       tools:layout_editor_absolutey="64dp"
       >
@@ -28,6 +28,7 @@
         android:layout_marginEnd="318dp"
         android:background="@android:color/transparent"
         android:text="@string/Back_To_Menu"
+        android:textColor="#FFFFFF"
         android:textSize="34sp" />
 
   </RelativeLayout>

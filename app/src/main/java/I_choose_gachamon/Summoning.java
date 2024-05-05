@@ -42,6 +42,12 @@ public class Summoning extends AppCompatActivity {
                 startActivity(new Intent(Summoning.this, LandingPage.class));
             }
         });
+        binding.summonUnitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
 }
