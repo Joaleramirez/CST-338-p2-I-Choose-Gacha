@@ -16,6 +16,8 @@ import com.example.i_choose_gacha_mon.databinding.ActivityGymBinding;
 
 public class BossBattle extends AppCompatActivity {
     ActivityBossBattleBinding binding;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +29,24 @@ public class BossBattle extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(BossBattle.this, LandingPage.class));
+            }
+        });
+        binding.bossLevel1ImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(BossBattle.this, Gameplay.class));
+            }
+        });
+        binding.bossLevel2ImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(BossBattle.this, Gameplay.class));
+            }
+        });
+        binding.bossLevel3ImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(BossBattle.this, Gameplay.class));
             }
         });
     };

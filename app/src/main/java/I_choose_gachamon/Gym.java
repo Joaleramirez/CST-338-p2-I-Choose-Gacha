@@ -22,12 +22,34 @@ public class Gym extends AppCompatActivity {
         binding = ActivityGymBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
+    //Back to menu button
         binding.BackToMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Gym.this, LandingPage.class));
             }
         });
+        //General battle map button
+        binding.generalBattleImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Gym.this, GeneralBattle.class));
+            }
+        });
+        //Boss battle map button
+        binding.bossBattleImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Gym.this, BossBattle.class));
+            }
+        });
+        //Boss rush button
+        binding.bossRushImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Gym.this, Gameplay.class));
+            }
+        });
+
         };
 }

@@ -22,11 +22,23 @@ public class Formation extends AppCompatActivity {
         binding = ActivityFormationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
         binding.BackToMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 startActivity(new Intent(Formation.this, LandingPage.class));
+            }
+        });
+        binding.formationEditButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        binding.formationSaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     };
