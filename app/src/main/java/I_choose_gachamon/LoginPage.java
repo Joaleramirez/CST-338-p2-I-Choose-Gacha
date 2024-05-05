@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -40,8 +41,6 @@ public class LoginPage extends AppCompatActivity {
     private void verifyUser(){
         String username = binding.LoginUsernameEditTextText.getText().toString();
 
-
-
         if (username.isEmpty()) {
             toastMaker("Username can not be blank.");
             return;
@@ -51,6 +50,10 @@ public class LoginPage extends AppCompatActivity {
             if (user != null) {
                 String password = binding.LoginPasswordEditTextTextPassword.getText().toString();
                 if (password.equals(user.getPassword())) {
+                    SharedPreferences sharedPreferences = getSharedPreferences("LoginPref", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putInt("userId", user.getId());
+                    editor.apply();
                     startActivity(LandingPage.landingPageIntentFactory(getApplicationContext(), user.getId()));
                 } else {
                     toastMaker("Invalid password");

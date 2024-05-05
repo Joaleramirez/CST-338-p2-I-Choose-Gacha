@@ -2,6 +2,7 @@ package I_choose_gachamon;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
         //Create account button on main
         binding.CreateAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +42,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, CreateAccount.class));
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        SharedPreferences sharedPreferences = getSharedPreferences("LoginPref", MODE_PRIVATE);
+        int userId = sharedPreferences.getInt("userId", -1);
+
+        if (userId != -1) {
+            // User is already logged in, navigate to the landing page
+            Intent intent = LandingPage.landingPageIntentFactory(this, userId);
+            startActivity(intent);
+            finish();
+        }
     }
 
 }
