@@ -1,5 +1,6 @@
 package I_choose_gachamon.database;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -35,4 +36,8 @@ public interface MonsterDAO {
     // Get a specific monster for a user
     @Query("SELECT * FROM " + GachamonDatabase.MONSTER_TABLE + " WHERE userId = :userId AND name = :name")
     Monster getMonsterForUser(int userId, String name);
+
+    @Query("SELECT * FROM " + GachamonDatabase.MONSTER_TABLE)
+    LiveData<List<Monster>> getAllMonsters();
+
 }

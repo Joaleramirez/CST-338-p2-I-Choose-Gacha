@@ -61,6 +61,12 @@ public class GachamonRepository {
         });
     }
 
+    public void updateUser(User user) {
+        GachamonDatabase.databaseWriteExecutor.execute(() -> {
+            userDAO.update(user);
+        });
+    }
+
     public LiveData<User> getUserByUserName(String username) {
         return userDAO.getUserByUserName(username);
     }
@@ -72,8 +78,26 @@ public class GachamonRepository {
         });
     }
 
+    public Monster cloneMonsterForUser(Monster originalMonster, int userId) {
+        Monster newMonster = new Monster(userId, originalMonster.getName(), originalMonster.getHp(), originalMonster.getAttack(), originalMonster.getSkillId());
+        newMonster.setEnergy(originalMonster.getEnergy());
+        newMonster.setBaseLevel(originalMonster.getBaseLevel());
+        return newMonster;
+    }
+
+    public void addMonsterToUser(Monster originalMonster, int userId){
+        Monster newMonster = cloneMonsterForUser(originalMonster, userId);
+        GachamonDatabase.databaseWriteExecutor.execute(() -> {
+            monsterDAO.insert(newMonster);
+        });
+    }
+
     public List<Monster> getMonstersForUser(int userId) {
         return monsterDAO.getMonstersForUser(userId);
+    }
+
+    public LiveData<List<Monster>> getAllMonsters() {
+        return monsterDAO.getAllMonsters();
     }
 
     public void insertSkill(Skill...skill) {

@@ -53,6 +53,7 @@ public class LoginPage extends AppCompatActivity {
                     SharedPreferences sharedPreferences = getSharedPreferences("LoginPref", MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putInt("userId", user.getId());
+                    editor.putString("username", user.getUsername());
                     editor.apply();
                     startActivity(LandingPage.landingPageIntentFactory(getApplicationContext(), user.getId()));
                 } else {

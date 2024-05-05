@@ -6,6 +6,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -19,6 +20,9 @@ public interface UserDAO {
 
     @Delete
     void delete(User user);
+
+    @Update
+    void update(User user);
 
     @Query("SELECT * FROM " + GachamonDatabase.USER_TABLE + " ORDER BY username")
     LiveData<List<User>> getAllUsers();

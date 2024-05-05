@@ -15,11 +15,15 @@ public class User {
     private String username;
     private String password;
     public boolean isAdmin;
+    private int pellets;
+    private int xp;
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
         isAdmin = isAdmin();
+        this.pellets = 10;
+        this.xp = 0;
     }
 
     @Override
@@ -27,12 +31,12 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id && isAdmin == user.isAdmin && Objects.equals(username, user.username) && Objects.equals(password, user.password);
+        return id == user.id && isAdmin == user.isAdmin && pellets == user.pellets && xp == user.xp && Objects.equals(username, user.username) && Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, isAdmin);
+        return Objects.hash(id, username, password, isAdmin, pellets, xp);
     }
 
     public int getId() {
@@ -66,4 +70,25 @@ public class User {
     public void setAdmin(boolean admin) {
         isAdmin = admin;
     }
+
+    public int getPellets() {
+        if (isAdmin) {
+            return Integer.MAX_VALUE;
+        } else {
+            return pellets;
+        }
+    }
+
+    public void setPellets(int pellets) {
+        this.pellets = pellets;
+    }
+
+    public int getXp() {
+        return xp;
+    }
+
+    public void setXp(int xp) {
+        this.xp = xp;
+    }
+
 }
