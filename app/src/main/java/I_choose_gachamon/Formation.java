@@ -4,18 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.example.i_choose_gacha_mon.R;
 import com.example.i_choose_gacha_mon.databinding.ActivityFormationBinding;
-import com.example.i_choose_gacha_mon.databinding.ActivityGymBinding;
 
 public class Formation extends AppCompatActivity {
+
     ActivityFormationBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,5 +25,7 @@ public class Formation extends AppCompatActivity {
                 startActivity(new Intent(Formation.this, LandingPage.class));
             }
         });
-    };
+
+
+    }
 }

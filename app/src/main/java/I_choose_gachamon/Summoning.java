@@ -57,13 +57,9 @@
             });
             SharedPreferences sharedPreferences = getSharedPreferences("LoginPref", MODE_PRIVATE);
             String currentUsername = sharedPreferences.getString("username", null);
-            binding.summonUnitButton.setEnabled(false);
             repository.getUserByUserName(currentUsername).observe(this, user -> {
                 if (user != null) {
                     currentUser = user;
-                    binding.summonUnitButton.setEnabled(true);
-                } else {
-                    Toast.makeText(this, "No User", Toast.LENGTH_SHORT).show();
                 }
             });
 

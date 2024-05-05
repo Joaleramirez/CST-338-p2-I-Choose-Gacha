@@ -8,13 +8,16 @@
     tools:context="I_choose_gachamon.Formation">
 
     <RelativeLayout
+        android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/formation_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:layout_editor_absolutex="10dp"
         tools:layout_editor_absolutey="64dp">
 
@@ -34,7 +37,21 @@
             android:textColor="#FFFFFF"
             android:textSize="34sp" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/monsterRecyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="388dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="132dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="211dp" />
+
     </RelativeLayout>
+
 
     <TextView
         android:id="@+id/formation_screen_TextView"
