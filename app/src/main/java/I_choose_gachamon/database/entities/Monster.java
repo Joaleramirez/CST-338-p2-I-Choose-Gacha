@@ -23,15 +23,15 @@ public class Monster {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
-    private int userId; // foreign key to tie a monster to a user
+    private Integer userId; // foreign key to tie a monster to a user
     private String name;
     private int hp;
     private int attack;
     private int energy = 0;
     private int baseLevel = 1;
-    private int skillId;
+    private int skillId; // foreign key to a skill
 
-    public Monster(int userId, String name, int hp, int attack, int skillId) {
+    public Monster(Integer userId, String name, int hp, int attack, int skillId) {
         this.userId = userId;
         this.name = name;
         this.hp = hp;
@@ -44,7 +44,7 @@ public class Monster {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Monster monster = (Monster) o;
-        return id == monster.id && userId == monster.userId && hp == monster.hp && attack == monster.attack && energy == monster.energy && baseLevel == monster.baseLevel && skillId == monster.skillId && Objects.equals(name, monster.name);
+        return id == monster.id && Objects.equals(userId, monster.userId) && hp == monster.hp && attack == monster.attack && energy == monster.energy && baseLevel == monster.baseLevel && skillId == monster.skillId && Objects.equals(name, monster.name);
     }
 
     @Override
@@ -84,11 +84,11 @@ public class Monster {
         this.id = id;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

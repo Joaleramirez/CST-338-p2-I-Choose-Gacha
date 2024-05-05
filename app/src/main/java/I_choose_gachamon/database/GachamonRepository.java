@@ -13,6 +13,7 @@ import java.util.concurrent.Future;
 
 import I_choose_gachamon.database.entities.Monster;
 import I_choose_gachamon.database.entities.Skill;
+import I_choose_gachamon.database.entities.Team;
 import I_choose_gachamon.database.entities.User;
 import I_choose_gachamon.MainActivity;
 
@@ -20,6 +21,7 @@ public class GachamonRepository {
     private final UserDAO userDAO;
     private final MonsterDAO monsterDAO;
     private final SkillDAO skillDAO;
+    private final TeamDAO teamDAO;
     private ArrayList<User> allUsers;
     private static GachamonRepository repository;
 
@@ -28,6 +30,7 @@ public class GachamonRepository {
         this.userDAO = db.userDAO();
         this.monsterDAO = db.monsterDAO();
         this.skillDAO = db.skillDAO();
+        this.teamDAO = db.teamDAO();
     }
 
     public static GachamonRepository getRepository(Application application){
@@ -88,5 +91,14 @@ public class GachamonRepository {
         return skillDAO.getMonsterSkill(skillId);
     }
 
+    public void insertTeam(Team team) {
+        GachamonDatabase.databaseWriteExecutor.execute(() -> {
+            teamDAO.insert(team);
+        });
+    }
+
+    public List<Team> getTeamByUserId(int userId) {
+        return teamDAO.getTeamByUserId(userId);
+    }
 
 }
