@@ -25,4 +25,6 @@
     <string name="change_monster_stats">Change Monster stats</string>
     <string name="change_summon_rates">Change Summon Rates</string>
     <string name="change_level_randomizer">Change Level Randomizer</string>
+    <string name="monster_level">Lvl: %d</string>
+    <string name="user_xp">XP: %d</string>
 </resources>

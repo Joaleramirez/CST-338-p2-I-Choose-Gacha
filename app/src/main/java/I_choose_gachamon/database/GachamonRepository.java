@@ -67,6 +67,12 @@ public class GachamonRepository {
         });
     }
 
+    public void deleteUser(User user) {
+        GachamonDatabase.databaseWriteExecutor.execute(() -> {
+            userDAO.delete(user);
+        });
+    }
+
     public LiveData<User> getUserByUserName(String username) {
         return userDAO.getUserByUserName(username);
     }
@@ -75,6 +81,12 @@ public class GachamonRepository {
         GachamonDatabase.databaseWriteExecutor.execute(() ->
         {
             monsterDAO.insert(monster);
+        });
+    }
+
+    public void updateMonster(Monster monster) {
+        GachamonDatabase.databaseWriteExecutor.execute(() -> {
+            monsterDAO.update(monster);
         });
     }
 
