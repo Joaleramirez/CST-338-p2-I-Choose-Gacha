@@ -27,6 +27,7 @@ import java.util.Random;
 
 import I_choose_gachamon.database.GachamonRepository;
 import I_choose_gachamon.database.entities.Monster;
+import I_choose_gachamon.database.entities.Skill;
 import I_choose_gachamon.database.entities.Team;
 import I_choose_gachamon.database.entities.User;
 
@@ -107,16 +108,16 @@ public class Gameplay extends AppCompatActivity {
 
 
         List<Monster> predefinedMonsters = new ArrayList<>();
-        predefinedMonsters.add(new Monster(null, "Shadow", 100, 10, 2));
-        predefinedMonsters.add(new Monster(null, "Mystic", 100, 10, 1));
-        predefinedMonsters.add(new Monster(null, "Chaos", 100, 10, 2));
-        predefinedMonsters.add(new Monster(null, "Aqua", 100, 10, 2));
-        predefinedMonsters.add(new Monster(null, "Volt", 100, 10, 2));
-        predefinedMonsters.add(new Monster(null, "Venom", 100, 10, 2));
-        predefinedMonsters.add(new Monster(null, "Gale", 100, 10, 2));
-        predefinedMonsters.add(new Monster(null, "Blaze", 100, 10, 2));
-        predefinedMonsters.add(new Monster(null, "Frostbite", 100, 10, 2));
-        predefinedMonsters.add(new Monster(null, "Quake", 100, 10, 2));
+        predefinedMonsters.add(new Monster(null, "Shadow", 100, 50, 2));
+        predefinedMonsters.add(new Monster(null, "Mystic", 100, 50, 1));
+        predefinedMonsters.add(new Monster(null, "Chaos", 100, 50, 2));
+        predefinedMonsters.add(new Monster(null, "Aqua", 100, 50, 2));
+        predefinedMonsters.add(new Monster(null, "Volt", 100, 50, 2));
+        predefinedMonsters.add(new Monster(null, "Venom", 100, 50, 2));
+        predefinedMonsters.add(new Monster(null, "Gale", 100, 50, 2));
+        predefinedMonsters.add(new Monster(null, "Blaze", 100, 50, 2));
+        predefinedMonsters.add(new Monster(null, "Frostbite", 100, 50, 2));
+        predefinedMonsters.add(new Monster(null, "Quake", 100, 550, 2));
         enemyMonsters = new ArrayList<>();
         Random random = new Random();
         int numberOfMonstersToAdd = random.nextInt(5) + 1;
@@ -133,19 +134,25 @@ public class Gameplay extends AppCompatActivity {
             Monster friendly = friendlyMonsters.get(currentFriendlyIndex);
             Monster enemy = enemyMonsters.get(currentEnemyIndex);
 
-            if (isSpecial && friendly.getEnergy() >= 100) {
-                friendly.specialAttack(enemy);
-            } else {
-                friendly.chargeEnergy();
-                friendly.basicAttack(enemy);
-            }
+            LiveData<Skill> skillLiveData = repository.getMonsterSkill(friendly.getSkillId());
+            skillLiveData.observe(this, skill -> {
+                if (skill != null) {
+                    if (isSpecial && friendly.getEnergy() >= skill.getEnergyCost()) {
+                        friendly.specialAttack(enemy, skill.getEnergyCost(), skill.getSkillDmg());
+                        Toast.makeText(this, skill.getName() + " executed!",  Toast.LENGTH_SHORT).show();
+                    } else {
+                        friendly.chargeEnergy();
+                        friendly.basicAttack(enemy);
+                }
+                }
+            });
 
             if (enemy.getHp() <= 0 && !nextMonster(enemyMonsters, true)) {
                 showVictoryMessage("Victory!");
                 return;
             }
 
-            if (tapCounter % 5 == 0) {
+            if (tapCounter % 2 == 0) {
                 enemy.takeNormalDamage(friendly);
                 if (friendly.getHp() <= 0 && !nextMonster(friendlyMonsters, false)) {
                     showVictoryMessage("Defeat!");

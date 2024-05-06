@@ -66,6 +66,8 @@ public class Enhancement extends AppCompatActivity {
 
                 // Increase monster level
                 selectedMonster.setBaseLevel(selectedMonster.getBaseLevel() + 1);
+                selectedMonster.setHp(selectedMonster.getHp() + 5);
+                selectedMonster.setAttack(selectedMonster.getAttack() + 1);
                 repository.updateMonster(selectedMonster);
 
                 Toast.makeText(Enhancement.this, "Monster level increased!", Toast.LENGTH_SHORT).show();

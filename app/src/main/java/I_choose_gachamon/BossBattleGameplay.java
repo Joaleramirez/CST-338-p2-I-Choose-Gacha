@@ -2,6 +2,7 @@ package I_choose_gachamon;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.LiveData;
 
 import com.example.i_choose_gacha_mon.R;
 import com.example.i_choose_gacha_mon.databinding.ActivityBossBattleGameplayBinding;
@@ -24,7 +26,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import I_choose_gachamon.database.GachamonRepository;
 import I_choose_gachamon.database.entities.Monster;
+import I_choose_gachamon.database.entities.Skill;
+import I_choose_gachamon.database.entities.Team;
+import I_choose_gachamon.database.entities.User;
 
 public class BossBattleGameplay extends AppCompatActivity {
     ActivityBossBattleGameplayBinding binding;
@@ -33,6 +39,8 @@ public class BossBattleGameplay extends AppCompatActivity {
     private int currentFriendlyIndex = 0;
     private int currentEnemyIndex = 0;
     private int tapCounter = 0;
+    private GachamonRepository repository;
+    User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +48,16 @@ public class BossBattleGameplay extends AppCompatActivity {
         binding = ActivityBossBattleGameplayBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        initializeMonsters();
+        repository = GachamonRepository.getRepository(getApplication());
+        assert repository != null;
+        SharedPreferences sharedPreferences = getSharedPreferences("LoginPref", MODE_PRIVATE);
+        String currentUsername = sharedPreferences.getString("username", null);
+        repository.getUserByUserName(currentUsername).observe(this, user -> {
+            if (user != null) {
+                currentUser = user;
+                initializeMonsters();
+            }
+        });
 
         binding.BackToMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,12 +83,33 @@ public class BossBattleGameplay extends AppCompatActivity {
         updateUI();
     }
     private void initializeMonsters() {
-        friendlyMonsters = new ArrayList<>();
-        friendlyMonsters.add(new Monster(null, "Frostbite", 100, 100, 1));
+        LiveData<Team> userTeam = repository.getTeamByUserId(currentUser.getId());
+        userTeam.observe(this, team -> {
+            if (team != null) {
+                friendlyMonsters = new ArrayList<>();
+                // Fetch each monster by its ID and add it to the friendlyMonsters list
+                Integer[] monsterIds = {team.getMonsterId1(), team.getMonsterId2(), team.getMonsterId3(), team.getMonsterId4()};
+                for (Integer monsterId : monsterIds) {
+                    if (monsterId != null) {
+                        LiveData<Monster> monsterLiveData = repository.getMonsterById(monsterId);
+                        monsterLiveData.observe(this, monster -> {
+                            if (monster != null) {
+                                friendlyMonsters.add(monster);
+                                if (friendlyMonsters.size() == monsterIds.length) {
+                                    updateUI();
+                                }
+                            }
+                        });
+                    }
+                }
+            } else {
+                Toast.makeText(this, "You have no team. Please create a team first.", Toast.LENGTH_LONG).show();
+            }
+        });
         List<Monster> predefinedMonsters = new ArrayList<>();
-        predefinedMonsters.add(new Monster(null, "Shadow", 250, 10, 2));
-        predefinedMonsters.add(new Monster(null, "Mystic", 500, 10, 1));
-        predefinedMonsters.add(new Monster(null, "Chaos", 1000, 10, 2));
+        predefinedMonsters.add(new Monster(null, "Shadow", 250, 50, 2));
+        predefinedMonsters.add(new Monster(null, "Mystic", 500, 40, 1));
+        predefinedMonsters.add(new Monster(null, "Chaos", 1000, 40, 2));
         enemyMonsters = new ArrayList<>();
         Random random = new Random();
         int numberOfMonstersToAdd = random.nextInt(1) + 1;
@@ -88,19 +126,25 @@ public class BossBattleGameplay extends AppCompatActivity {
             Monster friendly = friendlyMonsters.get(currentFriendlyIndex);
             Monster enemy = enemyMonsters.get(currentEnemyIndex);
 
-            if (isSpecial && friendly.getEnergy() >= 100) {
-                friendly.specialAttack(enemy);
-            } else {
-                friendly.chargeEnergy();
-                friendly.basicAttack(enemy);
-            }
+            LiveData<Skill> skillLiveData = repository.getMonsterSkill(friendly.getSkillId());
+            skillLiveData.observe(this, skill -> {
+                if (skill != null) {
+                    if (isSpecial && friendly.getEnergy() >= skill.getEnergyCost()) {
+                        friendly.specialAttack(enemy, skill.getEnergyCost(), skill.getSkillDmg());
+                        Toast.makeText(this, skill.getName() + " executed!",  Toast.LENGTH_SHORT).show();
+                    } else {
+                        friendly.chargeEnergy();
+                        friendly.basicAttack(enemy);
+                    }
+                }
+            });
 
             if (enemy.getHp() <= 0 && !nextMonster(enemyMonsters, true)) {
                 showVictoryMessage("Victory!");
                 return;
             }
 
-            if (tapCounter % 5 == 0) {
+            if (tapCounter % 2 == 0) {
                 enemy.takeNormalDamage(friendly);
                 if (friendly.getHp() <= 0 && !nextMonster(friendlyMonsters, false)) {
                     showVictoryMessage("Defeat!");
@@ -132,7 +176,7 @@ public class BossBattleGameplay extends AppCompatActivity {
     }
 
     private void updateUI() {
-        if (currentFriendlyIndex < friendlyMonsters.size() && currentEnemyIndex < enemyMonsters.size()) {
+        if (friendlyMonsters != null && currentFriendlyIndex < friendlyMonsters.size() && enemyMonsters != null && currentEnemyIndex < enemyMonsters.size()) {
             Monster friendly = friendlyMonsters.get(currentFriendlyIndex);
             Monster enemy = enemyMonsters.get(currentEnemyIndex);
             binding.tvEMonsterName.setText("Enemy: " + enemy.getName());

@@ -134,12 +134,12 @@ public class Monster {
             opponent.hp -= getAttack();  // Opponent loses 2 HP per basic attack
         }
     }
-    public void specialAttack(Monster opponent) {
-        if (this.energy >= 100) {  // Checks if energy is sufficient for a special attack
+    public void specialAttack(Monster opponent, int energyCost, int skillDmg) {
+        if (this.energy >= energyCost) {  // Checks if energy is sufficient for a special attack
             if (opponent != null) {
-                opponent.hp -= 30;  // Opponent loses 30 HP on special attack
+                opponent.hp -= skillDmg;  // Opponent loses 30 HP on special attack
             }
-            this.energy -= 100;  // Reset energy after the attack
+            this.energy -= energyCost;  // Reset energy after the attack
             System.out.println("Special attack executed! Energy reset.");
         } else {
             System.out.println("Not enough energy for special attack. Current energy: " + this.energy);

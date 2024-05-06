@@ -1,5 +1,6 @@
 package I_choose_gachamon.database;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -28,5 +29,5 @@ public interface SkillDAO {
     List<Skill> getAllSkills();
 
     @Query("SELECT * FROM " + GachamonDatabase.SKILL_TABLE + " WHERE id = :skillId")
-    Skill getMonsterSkill(int skillId);
+    LiveData<Skill> getMonsterSkill(int skillId);
 }

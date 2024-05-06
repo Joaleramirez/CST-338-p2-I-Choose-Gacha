@@ -127,7 +127,7 @@ public class GachamonRepository {
         return skillDAO.getAllSkills();
     }
 
-    public Skill getMonsterSkill(int skillId) {
+    public LiveData<Skill> getMonsterSkill(int skillId) {
         return skillDAO.getMonsterSkill(skillId);
     }
 

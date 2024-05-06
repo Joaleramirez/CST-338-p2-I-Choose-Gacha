@@ -18,6 +18,7 @@
         <activity
             android:name="I_choose_gachamon.BossBattle"
             android:exported="false" />
+        <activity android:name="I_choose_gachamon.BossBattleGameplay" />
         <activity
             android:name="I_choose_gachamon.Gameplay"
             android:exported="false" />
