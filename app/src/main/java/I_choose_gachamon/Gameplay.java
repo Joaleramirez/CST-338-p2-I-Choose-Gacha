@@ -93,6 +93,9 @@ public class Gameplay extends AppCompatActivity {
                         monsterLiveData.observe(this, monster -> {
                             if (monster != null) {
                                 friendlyMonsters.add(monster);
+                                if (friendlyMonsters.size() == monsterIds.length) {
+                                    updateUI();
+                                }
                             }
                         });
                     }
