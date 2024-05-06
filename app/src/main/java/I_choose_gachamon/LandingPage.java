@@ -3,6 +3,7 @@ package I_choose_gachamon;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -88,9 +89,7 @@ public class LandingPage extends AppCompatActivity {
             }
         });
 
-        //Uncomment when pages are made
-    /*
-        //Settings button on Landing page
+
         binding.settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,18 +97,15 @@ public class LandingPage extends AppCompatActivity {
             }
         });
         //Admin settings button on Landing page
-        binding.Admin_Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LandingPage.this, Settings.class));
-            }
-        });
 
-    */
     }
     private void loginUser() {
-        user = new User("Eric", "password");
-        loggedInUserId = getIntent().getIntExtra(LANDING_PAGE_USER_ID, -1);
+        SharedPreferences sharedPreferences = getSharedPreferences("LoginPref", MODE_PRIVATE);
+        String username = sharedPreferences.getString("username", null);
+        if (username != null) {
+            user = new User(username, "password");
+            loggedInUserId = getIntent().getIntExtra(LANDING_PAGE_USER_ID, -1);
+        }
     }
 
     @Override
@@ -158,7 +154,12 @@ public class LandingPage extends AppCompatActivity {
     }
 
     private void logout() {
+        SharedPreferences sharedPreferences = getSharedPreferences("LoginPref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
         startActivity(LoginPage.loginIntentFactory(getApplicationContext()));
+        finish();
     }
 
     static Intent landingPageIntentFactory(Context context, int userId) {

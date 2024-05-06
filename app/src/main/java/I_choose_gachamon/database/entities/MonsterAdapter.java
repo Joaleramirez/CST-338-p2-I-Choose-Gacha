@@ -19,8 +19,8 @@ import java.util.List;
 
 public class MonsterAdapter extends RecyclerView.Adapter<MonsterAdapter.MonsterViewHolder> {
 
-    private List<Monster> monsters; // Cached copy of monsters
-    private List<Monster> selectedMonsters;
+    public List<Monster> monsters; // Cached copy of monsters
+    public List<Monster> selectedMonsters;
 
     public MonsterAdapter(Context context) {
         selectedMonsters = new ArrayList<>();
@@ -39,6 +39,7 @@ public class MonsterAdapter extends RecyclerView.Adapter<MonsterAdapter.MonsterV
     public void onBindViewHolder(MonsterViewHolder holder, int position) {
         Monster current = monsters.get(position);
         holder.monsterNameTextView.setText(current.getName());
+        holder.monsterLevelTextView.setText(String.format(holder.itemView.getContext().getResources().getString(R.string.monster_level), current.getBaseLevel()));
         holder.monsterCheckBox.setOnCheckedChangeListener(null);
         holder.monsterCheckBox.setChecked(current.isSelected());
         holder.monsterCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -76,14 +77,21 @@ public class MonsterAdapter extends RecyclerView.Adapter<MonsterAdapter.MonsterV
         return selectedMonsters;
     }
 
+    public Monster getSelectedMonster() {
+        return selectedMonsters.isEmpty() ? null : selectedMonsters.get(0);
+    }
+
+
     public static class MonsterViewHolder extends RecyclerView.ViewHolder {
         CheckBox monsterCheckBox;
         TextView monsterNameTextView;
+        TextView monsterLevelTextView;
 
         private MonsterViewHolder(View itemView) {
             super(itemView);
             monsterCheckBox = itemView.findViewById(R.id.monsterCheckBox);
             monsterNameTextView = itemView.findViewById(R.id.monsterNameTextView);
+            monsterLevelTextView = itemView.findViewById(R.id.monsterLevelTextView);
         }
     }
 
