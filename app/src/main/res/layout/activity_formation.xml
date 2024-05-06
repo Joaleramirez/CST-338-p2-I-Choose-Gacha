@@ -71,20 +71,6 @@
         app:layout_constraintVertical_bias="0.078" />
 
     <ImageButton
-        android:id="@+id/formation_edit_Button"
-        android:layout_width="121dp"
-        android:layout_height="117dp"
-        android:background="@android:color/transparent"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.055"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/formation_screen_TextView"
-        app:layout_constraintVertical_bias="0.942"
-        app:srcCompat="@drawable/formation_edit_button" />
-
-    <ImageButton
         android:id="@+id/formation_save_Button"
         android:layout_width="121dp"
         android:layout_height="117dp"
@@ -92,8 +78,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.895"
-        app:layout_constraintStart_toEndOf="@+id/formation_edit_Button"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/formation_screen_TextView"
         app:layout_constraintVertical_bias="0.942"
         app:srcCompat="@drawable/accept_button" />

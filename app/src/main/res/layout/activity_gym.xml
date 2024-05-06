@@ -61,7 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.24"
+        app:layout_constraintVertical_bias="0.285"
         app:srcCompat="@drawable/general_battle_button" />
 
     <ImageButton
@@ -72,24 +72,10 @@
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.133"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/general_battle_imageButton"
-        app:layout_constraintVertical_bias="0.718"
+        app:layout_constraintVertical_bias="0.551"
         app:srcCompat="@drawable/boss_battle_button" />
-
-    <ImageButton
-        android:id="@+id/boss_rush_imageButton"
-        android:layout_width="179dp"
-        android:layout_height="179dp"
-        android:background="@android:color/transparent"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.619"
-        app:layout_constraintStart_toEndOf="@+id/boss_battle_imageButton"
-        app:layout_constraintTop_toBottomOf="@+id/general_battle_imageButton"
-        app:layout_constraintVertical_bias="0.781"
-        app:srcCompat="@drawable/boss_rush_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

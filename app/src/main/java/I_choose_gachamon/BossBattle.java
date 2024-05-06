@@ -34,19 +34,19 @@ public class BossBattle extends AppCompatActivity {
         binding.bossLevel1ImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(BossBattle.this, Gameplay.class));
+                startActivity(new Intent(BossBattle.this, BossBattleGameplay.class));
             }
         });
         binding.bossLevel2ImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(BossBattle.this, Gameplay.class));
+                startActivity(new Intent(BossBattle.this, BossBattleGameplay.class));
             }
         });
         binding.bossLevel3ImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(BossBattle.this, Gameplay.class));
+                startActivity(new Intent(BossBattle.this, BossBattleGameplay.class));
             }
         });
     };

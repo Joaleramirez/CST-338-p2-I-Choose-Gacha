@@ -43,13 +43,6 @@ public class Gym extends AppCompatActivity {
                 startActivity(new Intent(Gym.this, BossBattle.class));
             }
         });
-        //Boss rush button
-        binding.bossRushImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Gym.this, Gameplay.class));
-            }
-        });
 
         };
 }

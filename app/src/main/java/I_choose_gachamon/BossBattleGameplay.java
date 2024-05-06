@@ -9,12 +9,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.i_choose_gacha_mon.R;
+import com.example.i_choose_gacha_mon.databinding.ActivityBossBattleGameplayBinding;
 import com.example.i_choose_gacha_mon.databinding.ActivityGameplayBinding;
 import com.example.i_choose_gacha_mon.databinding.ActivityGymBinding;
 
@@ -24,8 +26,8 @@ import java.util.Random;
 
 import I_choose_gachamon.database.entities.Monster;
 
-public class Gameplay extends AppCompatActivity {
-    ActivityGameplayBinding binding;
+public class BossBattleGameplay extends AppCompatActivity {
+    ActivityBossBattleGameplayBinding binding;
     private List<Monster> friendlyMonsters;
     private List<Monster> enemyMonsters;
     private int currentFriendlyIndex = 0;
@@ -35,7 +37,7 @@ public class Gameplay extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityGameplayBinding.inflate(getLayoutInflater());
+        binding = ActivityBossBattleGameplayBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         initializeMonsters();
@@ -43,7 +45,7 @@ public class Gameplay extends AppCompatActivity {
         binding.BackToMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Gameplay.this, LandingPage.class));
+                startActivity(new Intent(BossBattleGameplay.this, LandingPage.class));
             }
         });
 
@@ -65,23 +67,14 @@ public class Gameplay extends AppCompatActivity {
     }
     private void initializeMonsters() {
         friendlyMonsters = new ArrayList<>();
-        friendlyMonsters.add(new Monster(null, "Frostbite", 100, 10, 1));
-
-
+        friendlyMonsters.add(new Monster(null, "Frostbite", 100, 100, 1));
         List<Monster> predefinedMonsters = new ArrayList<>();
-        predefinedMonsters.add(new Monster(null, "Shadow", 100, 10, 2));
-        predefinedMonsters.add(new Monster(null, "Mystic", 100, 10, 1));
-        predefinedMonsters.add(new Monster(null, "Chaos", 100, 10, 2));
-        predefinedMonsters.add(new Monster(null, "Aqua", 100, 10, 2));
-        predefinedMonsters.add(new Monster(null, "Volt", 100, 10, 2));
-        predefinedMonsters.add(new Monster(null, "Venom", 100, 10, 2));
-        predefinedMonsters.add(new Monster(null, "Gale", 100, 10, 2));
-        predefinedMonsters.add(new Monster(null, "Blaze", 100, 10, 2));
-        predefinedMonsters.add(new Monster(null, "Frostbite", 100, 10, 2));
-        predefinedMonsters.add(new Monster(null, "Quake", 100, 10, 2));
+        predefinedMonsters.add(new Monster(null, "Shadow", 250, 10, 2));
+        predefinedMonsters.add(new Monster(null, "Mystic", 500, 10, 1));
+        predefinedMonsters.add(new Monster(null, "Chaos", 1000, 10, 2));
         enemyMonsters = new ArrayList<>();
         Random random = new Random();
-        int numberOfMonstersToAdd = random.nextInt(5) + 1;
+        int numberOfMonstersToAdd = random.nextInt(1) + 1;
 
         for (int i = 0; i < numberOfMonstersToAdd; i++) {
             int index = random.nextInt(predefinedMonsters.size());
@@ -135,7 +128,7 @@ public class Gameplay extends AppCompatActivity {
 
     private void showVictoryMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-        startActivity(new Intent(Gameplay.this, GeneralBattle.class));
+        startActivity(new Intent(BossBattleGameplay.this, BossBattle.class));
     }
 
     private void updateUI() {
