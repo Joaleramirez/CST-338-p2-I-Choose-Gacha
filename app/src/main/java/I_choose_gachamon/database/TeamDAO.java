@@ -26,8 +26,8 @@ public interface TeamDAO {
     @Query("DELETE FROM " + GachamonDatabase.TEAM_TABLE + " WHERE userId = :userId")
     void deleteTeamFromUser(int userId);
 
-    @Query("SELECT * FROM team_table WHERE userId = :userId")
-    LiveData<List<Team>> getTeamByUserId(int userId);
+    @Query("SELECT * FROM team_table WHERE userId = :userId LIMIT 1")
+    LiveData<Team> getTeamByUserId(int userId);
 
     @Transaction
     default void replaceTeam(int userId, Team newTeam) {

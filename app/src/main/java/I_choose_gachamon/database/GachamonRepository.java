@@ -100,6 +100,10 @@ public class GachamonRepository {
         return monsterDAO.getAllMonsters();
     }
 
+    public LiveData<Monster> getMonsterById(int monsterId) {
+        return monsterDAO.getMonsterById(monsterId);
+    }
+
     public void insertSkill(Skill...skill) {
         GachamonDatabase.databaseWriteExecutor.execute(() ->
         {
@@ -127,7 +131,7 @@ public class GachamonRepository {
         });
     }
 
-    public LiveData<List<Team>> getTeamByUserId(int userId) {
+    public LiveData<Team> getTeamByUserId(int userId) {
         return teamDAO.getTeamByUserId(userId);
     }
 

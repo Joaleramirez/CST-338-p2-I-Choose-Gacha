@@ -40,4 +40,7 @@ public interface MonsterDAO {
     @Query("SELECT * FROM " + GachamonDatabase.MONSTER_TABLE)
     LiveData<List<Monster>> getAllMonsters();
 
+    @Query("SELECT * FROM monster_table WHERE id = :monsterId LIMIT 1")
+    LiveData<Monster> getMonsterById(int monsterId);
+
 }

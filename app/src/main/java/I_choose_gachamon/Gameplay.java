@@ -10,12 +10,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.lifecycle.Observer;
+import androidx.lifecycle.LiveData;
 
 import com.example.i_choose_gacha_mon.R;
 import com.example.i_choose_gacha_mon.databinding.ActivityGameplayBinding;
@@ -23,24 +22,23 @@ import com.example.i_choose_gacha_mon.databinding.ActivityGymBinding;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListResourceBundle;
 import java.util.Random;
 
 import I_choose_gachamon.database.GachamonRepository;
 import I_choose_gachamon.database.entities.Monster;
-import I_choose_gachamon.database.entities.MonsterAdapter;
 import I_choose_gachamon.database.entities.Team;
 import I_choose_gachamon.database.entities.User;
 
 public class Gameplay extends AppCompatActivity {
     ActivityGameplayBinding binding;
-    private GachamonRepository repository;
-    private User currentUser;
     private List<Monster> friendlyMonsters;
     private List<Monster> enemyMonsters;
     private int currentFriendlyIndex = 0;
     private int currentEnemyIndex = 0;
     private int tapCounter = 0;
-
+    User currentUser;
+    GachamonRepository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +46,16 @@ public class Gameplay extends AppCompatActivity {
         binding = ActivityGameplayBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        initializeMonsters();
+        repository = GachamonRepository.getRepository(getApplication());
+        assert repository != null;
+        SharedPreferences sharedPreferences = getSharedPreferences("LoginPref", MODE_PRIVATE);
+        String currentUsername = sharedPreferences.getString("username", null);
+        repository.getUserByUserName(currentUsername).observe(this, user -> {
+            if (user != null) {
+                currentUser = user;
+                initializeMonsters();
+            }
+        });
 
         binding.BackToMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,29 +81,26 @@ public class Gameplay extends AppCompatActivity {
         updateUI();
     }
     private void initializeMonsters() {
-        SharedPreferences sharedPreferences = getSharedPreferences("LoginPref", MODE_PRIVATE);
-        String currentUsername = sharedPreferences.getString("username", null);
-
-        repository.getUserByUserName(currentUsername).observe(this, user -> {
-            if (user != null) {
-                currentUser = user;
-                repository.getTeamByUserId(currentUser.getId()).observe(this, teams -> {
-                    if (teams != null && !teams.isEmpty()) {
-                        friendlyMonsters = new ArrayList<>();
-                        for (Team team : teams) {
-                            repository.getMonstersForUser(team.getId()).observe(this, monsters -> {
-                                if (monsters != null) {
-                                    friendlyMonsters.addAll(monsters);
-                                    updateUI();  // Update UI when monster data is fully loaded
-                                }
-                            });
-                        }
+        LiveData<Team> userTeam = repository.getTeamByUserId(currentUser.getId());
+        userTeam.observe(this, team -> {
+            if (team != null) {
+                friendlyMonsters = new ArrayList<>();
+                // Fetch each monster by its ID and add it to the friendlyMonsters list
+                Integer[] monsterIds = {team.getMonsterId1(), team.getMonsterId2(), team.getMonsterId3(), team.getMonsterId4()};
+                for (Integer monsterId : monsterIds) {
+                    if (monsterId != null) {
+                        LiveData<Monster> monsterLiveData = repository.getMonsterById(monsterId);
+                        monsterLiveData.observe(this, monster -> {
+                            if (monster != null) {
+                                friendlyMonsters.add(monster);
+                            }
+                        });
                     }
-                });
+                }
+            } else {
+                Toast.makeText(this, "You have no team. Please create a team first.", Toast.LENGTH_LONG).show();
             }
         });
-
-
 
 
         List<Monster> predefinedMonsters = new ArrayList<>();
@@ -170,7 +174,7 @@ public class Gameplay extends AppCompatActivity {
     }
 
     private void updateUI() {
-        if (currentFriendlyIndex < friendlyMonsters.size() && currentEnemyIndex < enemyMonsters.size()) {
+        if (friendlyMonsters != null && currentFriendlyIndex < friendlyMonsters.size() && enemyMonsters != null && currentEnemyIndex < enemyMonsters.size()) {
             Monster friendly = friendlyMonsters.get(currentFriendlyIndex);
             Monster enemy = enemyMonsters.get(currentEnemyIndex);
             binding.tvEMonsterName.setText("Enemy: " + enemy.getName());
@@ -191,5 +195,7 @@ public class Gameplay extends AppCompatActivity {
         } else {
             imageView.setImageResource(R.drawable.aqua);
         }
-    };
+    }
+
+
 }
