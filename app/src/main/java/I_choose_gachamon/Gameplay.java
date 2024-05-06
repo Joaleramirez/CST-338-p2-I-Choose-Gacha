@@ -148,7 +148,7 @@ public class Gameplay extends AppCompatActivity {
             });
 
             if (enemy.getHp() <= 0 && !nextMonster(enemyMonsters, true)) {
-                showVictoryMessage("Victory!");
+                showVictoryMessage("Victory!\nGained 10 XP!");
                 return;
             }
 
@@ -180,6 +180,8 @@ public class Gameplay extends AppCompatActivity {
 
     private void showVictoryMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        currentUser.setXp(currentUser.getXp() + 10);
+        repository.updateUser(currentUser);
         startActivity(new Intent(Gameplay.this, GeneralBattle.class));
     }
 

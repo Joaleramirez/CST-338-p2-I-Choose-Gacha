@@ -140,7 +140,7 @@ public class BossBattleGameplay extends AppCompatActivity {
             });
 
             if (enemy.getHp() <= 0 && !nextMonster(enemyMonsters, true)) {
-                showVictoryMessage("Victory!");
+                showVictoryMessage("Victory!\nGained 1 Pellet!");
                 return;
             }
 
@@ -172,6 +172,8 @@ public class BossBattleGameplay extends AppCompatActivity {
 
     private void showVictoryMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        currentUser.setPellets(currentUser.getPellets() + 1);
+        repository.updateUser(currentUser);
         startActivity(new Intent(BossBattleGameplay.this, BossBattle.class));
     }
 
