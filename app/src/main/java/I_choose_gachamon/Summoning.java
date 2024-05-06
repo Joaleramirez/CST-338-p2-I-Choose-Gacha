@@ -31,6 +31,7 @@
     import I_choose_gachamon.database.entities.User;
     import com.example.i_choose_gacha_mon.databinding.ActivitySummoningBinding;
 
+    import java.util.ArrayList;
     import java.util.List;
     import java.util.Random;
 
@@ -68,7 +69,7 @@
                 public void onClick(View v) {
                     if (currentUser != null) {
                         if (currentUser.getPellets() < 10) {
-                            Toast.makeText(Summoning.this, "Not enough pellets for a 10 roll", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Summoning.this, "Insufficient Pellets", Toast.LENGTH_SHORT).show();
                         } else if (!hasRolled) {
                             currentUser.setPellets(currentUser.getPellets() - 10);
                             repository.updateUser(currentUser);
@@ -93,6 +94,7 @@
         private void gachaRoll() {
             if (allMonsters != null) {
                 Random random = new Random();
+                List<String> summonResults = new ArrayList<>();
 
                 for (int i = 0; i < 10; i++) {
                     // 40% chance to get a monster, 60% chance to get XP
@@ -103,13 +105,22 @@
                         Monster newMonster = repository.cloneMonsterForUser(originalMonster, currentUser.getId());
                         // Add the cloned monster to the user
                         repository.addMonsterToUser(newMonster, currentUser.getId());
+                        summonResults.add(newMonster.getName() + " was summoned!");
                     } else {
                         // Add 10 XP to the user
                         currentUser.setXp(currentUser.getXp() + 10);
                         repository.updateUser(currentUser);
+                        summonResults.add("Received 10 XP!");
                     }
                 }
-                Toast.makeText(Summoning.this, "Gacha roll complete!", Toast.LENGTH_SHORT).show();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(Summoning.this);
+                builder.setTitle("Summon Results")
+                        .setItems(summonResults.toArray(new String[0]), null)
+                        .setPositiveButton("OK", null)
+                        .show();
+
+                Toast.makeText(Summoning.this, "Summon Complete!", Toast.LENGTH_SHORT).show();
             }
         }
     }
