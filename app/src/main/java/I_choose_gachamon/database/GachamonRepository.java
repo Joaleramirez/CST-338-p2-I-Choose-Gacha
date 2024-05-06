@@ -92,7 +92,7 @@ public class GachamonRepository {
         });
     }
 
-    public List<Monster> getMonstersForUser(int userId) {
+    public LiveData<List<Monster>> getMonstersForUser(int userId) {
         return monsterDAO.getMonstersForUser(userId);
     }
 
@@ -121,8 +121,20 @@ public class GachamonRepository {
         });
     }
 
-    public List<Team> getTeamByUserId(int userId) {
+    public void deleteTeamFromUser(int userId) {
+        GachamonDatabase.databaseWriteExecutor.execute(() -> {
+            teamDAO.deleteTeamFromUser(userId);
+        });
+    }
+
+    public LiveData<List<Team>> getTeamByUserId(int userId) {
         return teamDAO.getTeamByUserId(userId);
+    }
+
+    public void replaceTeam(int userId, Team newTeam) {
+        GachamonDatabase.databaseWriteExecutor.execute(() -> {
+            teamDAO.replaceTeam(userId, newTeam);
+        });
     }
 
 }

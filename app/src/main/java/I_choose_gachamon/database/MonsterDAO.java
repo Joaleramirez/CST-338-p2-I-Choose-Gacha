@@ -31,7 +31,7 @@ public interface MonsterDAO {
 
     // Get all monsters for a specific user
     @Query("SELECT * FROM " + GachamonDatabase.MONSTER_TABLE +" WHERE userId = :userId")
-    List<Monster> getMonstersForUser(int userId);
+    LiveData<List<Monster>> getMonstersForUser(int userId);
 
     // Get a specific monster for a user
     @Query("SELECT * FROM " + GachamonDatabase.MONSTER_TABLE + " WHERE userId = :userId AND name = :name")
